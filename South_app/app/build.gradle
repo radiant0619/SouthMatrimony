@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
+
+    defaultConfig {
+        applicationId "com.southmatrimony.matrimony"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.1"
+    }
+    signingConfigs {
+        releaseConfig {
+            storeFile file("south_app.jks");
+            storePassword("mani5526");
+            keyAlias "southmatrimony";
+            keyPassword "south5526";
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+        }
+        debug {
+            applicationIdSuffix ".debug"/* debug version of app in same device*/
+            debuggable true
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.google.android.gms:play-services-ads:10.2.6'
+}
